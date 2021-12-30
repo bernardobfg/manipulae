@@ -17,7 +17,9 @@ export const SearchBar = ({ onSearch }) => {
   }
   useEffect(() => {
     const timer = setTimeout(() => { 
-      onSearch(search, setIsLoading)
+      if (search) {
+        onSearch(search, setIsLoading)
+      }
     }, 5000)
     return () => clearTimeout(timer)
   }, [search])
