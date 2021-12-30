@@ -1,6 +1,14 @@
+import { ThemeProvider } from "styled-components"
+import { MyRoutes } from "./routes"
+import { GlobalStyle } from "./styles/global"
+import { theme } from "./styles/theme"
+
 function App() {
   return (
-    <div>Hello world</div>
+    <ThemeProvider theme={theme}>
+      <MyRoutes />
+      <GlobalStyle/>
+    </ThemeProvider>
   )
 }
 
