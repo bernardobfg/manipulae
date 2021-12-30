@@ -8,7 +8,7 @@ export const SideArea = styled.div`
   background-color: ${props => props.theme.colors.auxiliar};
   min-height: 100vh;
   width: 220px;
-  border-right: 1px solid ${props => props.theme.colors.lightText};
+  border-right: 1px solid ${props => props.theme.colors.divider};
   img{
     width: 140px;
     margin-bottom: 40px;;

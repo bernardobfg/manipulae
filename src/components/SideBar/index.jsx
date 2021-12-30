@@ -8,12 +8,12 @@ export const SideBar = () => {
     {
       name: "Tendências",
       path: "/",
-      icon: BsHeartFill
+      icon: BsMusicNoteBeamed
     },
     {
       name: "Favoritas",
       path: "/favoritas",
-      icon: BsMusicNoteBeamed
+      icon: BsHeartFill
     },
   ]
 

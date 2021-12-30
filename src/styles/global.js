@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height: 1.5;
   }
+  button{
+    cursor: pointer;
+  }
   button:disabled{
     cursor: not-allowed;
     filter: brightness(.8);

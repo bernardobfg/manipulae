@@ -4,7 +4,8 @@ export const theme = {
     background: "#121216",
     auxiliar: "#191922",
     lightText: "#72727D",
-    text: "#FFFFFF"
+    text: "#FFFFFF",
+    divider: "#32323d",
   },
 }
 
