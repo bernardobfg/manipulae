@@ -19,6 +19,7 @@ export const Track = ({ track }) => {
   const minutes = Math.floor(track.duration / 60)
   const seconds = track.duration % 60
   const formatedDuration = `${minutes < 10 ? 0 : ""}${minutes}:${seconds < 10 ? 0 : ""}${seconds}`
+  //console.log(track)
   return (
     <TrackContainer>
       <Cover src={track.album.cover_small} alt={track.title} />

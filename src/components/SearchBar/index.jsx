@@ -9,7 +9,6 @@ export const SearchBar = ({ onSearch }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    if(!search) return
     onSearch(search, setIsLoading)
   }
   const handleClearSearch = () => {
@@ -17,10 +16,8 @@ export const SearchBar = ({ onSearch }) => {
   }
   useEffect(() => {
     const timer = setTimeout(() => { 
-      if (search) {
-        onSearch(search, setIsLoading)
-      }
-    }, 5000)
+      onSearch(search, setIsLoading)
+    }, 1000)
     return () => clearTimeout(timer)
   }, [search])
 

@@ -7,9 +7,15 @@ import { Content, Section, SectionTitle, Tracks } from "./styles"
 
 export const Home = () => {
   const [chartTracks, setChartTracks] = useState([])
+  const [searchResult, setSearchResult] = useState([])
   const onSearch = async (search, setLoadingFunction) => {
+    if (!search) {
+      setSearchResult([])
+      return
+    }
     setLoadingFunction(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    const response = await api.get(`/search?q=${search}&limit=10`)
+    setSearchResult(response.data.data)
     setLoadingFunction(false)
   }
 
@@ -32,12 +38,18 @@ export const Home = () => {
         <SearchBar onSearch={onSearch} />
         <Section>
           <SectionTitle>
-            As principais tendências da atualidade
+            {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
           </SectionTitle>
           <Tracks>
-            {chartTracks.map(track => (
-              <Track key={track.id} track={track} />
-            ))}
+            ${
+              searchResult.length > 0 ?
+              searchResult.map(track => (
+                <Track key={track.id} track={track} />
+              )):
+              chartTracks.map(track => (
+                <Track key={track.id} track={track} />
+              ))
+            }
           </Tracks>
         </Section>
       </Content>
