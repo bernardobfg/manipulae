@@ -2,21 +2,21 @@ import { Input, SearchContainer, SearchContent, SubmitButton, ClearButton, Loadi
 import { BsSearch, BsXCircle } from "react-icons/bs"
 import { useEffect, useState } from "react"
 import ReactLoading from "react-loading"
-export const SearchBar = ({ onSearch }) => {
+export const SearchBar = ({search, setSearch, onSearch }) => {
 
-  const [search, setSearch] = useState("")
+  //const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    onSearch(search, setIsLoading)
+    onSearch(setIsLoading)
   }
   const handleClearSearch = () => {
     setSearch("")
   }
   useEffect(() => {
     const timer = setTimeout(() => { 
-      onSearch(search, setIsLoading)
+      onSearch(setIsLoading)
     }, 1000)
     return () => clearTimeout(timer)
   }, [search])

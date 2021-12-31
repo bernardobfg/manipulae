@@ -13,7 +13,8 @@ export const Home = () => {
   const [nextPage, setNextPage] = useState(null)
   const [isFetchingNextPage, setIsFetchingNextPage] = useState(false)
   const [fetchingError, setFetchingError] = useState(false)
-  const onSearch = async (search, setLoadingFunction) => {
+  const [search, setSearch] = useState("")
+  const onSearch = async (setLoadingFunction) => {
     if (!search) {
       setSearchResult([])
       setNextPage(null)
@@ -65,42 +66,49 @@ export const Home = () => {
       console.log(error)
       setFetchingError(true)
     }
-    
+
     setIsFetchingNextPage(false)
-    
+
   }
 
   return (
     <Container activePage="Músicas">
       <Content>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          onSearch={onSearch}
+        />
         <Section>
           <SectionTitle>
             {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
           </SectionTitle>
           {
-            fetchingError && 
-            <ErrorImg/>
+            fetchingError ?
+              <ErrorImg /> :
+              <>
+                <Tracks>
+                  {
+                    searchResult.length > 0 ?
+                      searchResult.map(track => (
+                        <Track key={track.id} track={track} />
+                      )) :
+                      chartTracks.map(track => (
+                        <Track key={track.id} track={track} />
+                      ))
+                  }
+                </Tracks>
+                {searchResult.length > 0 && (
+                  <LoadMoreButton onClick={fetchNextPage}>
+                    {isFetchingNextPage ?
+                      <ReactLoading type="spin" color="#fff" height={20} width={20} /> :
+                      "Carregar mais"
+                    }
+                  </LoadMoreButton>
+                )}
+              </>
           }
-          <Tracks>
-            {
-              searchResult.length > 0 ?
-                searchResult.map(track => (
-                  <Track key={track.id} track={track} />
-                )) :
-                chartTracks.map(track => (
-                  <Track key={track.id} track={track} />
-                ))
-            }
-          </Tracks>
-          {searchResult.length > 0 && (
-            <LoadMoreButton onClick={fetchNextPage}>
-              {isFetchingNextPage ?
-                <ReactLoading type="spin" color="#fff" height={20} width={20} /> :
-                "Carregar mais"
-              }
-            </LoadMoreButton>
-          )}
+
         </Section>
       </Content>
     </Container>

@@ -1,5 +1,5 @@
-import { BsHeartFill, BsPlusCircleFill } from "react-icons/bs"
-import { useState } from "react"
+import { BsHeartFill } from "react-icons/bs"
+import { useEffect, useState } from "react"
 import { FaDeezer } from "react-icons/fa"
 import ReactTooltip from 'react-tooltip'
 
@@ -15,14 +15,34 @@ import {
   AddToFavorites,
   CheckOnDeezer
 } from "./styles"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { addMusicToFavorite, removeMusicFromFavorite } from "../../store/modules/favoriteList/action"
+
 
 
 export const Track = ({ track }) => {
+  const favoriteList = useSelector(state => state.favoriteList)
+  const dispatch = useDispatch()
   const [isFavorite, setIsFavorite] = useState(false)
+
+  useEffect(() => {
+    const isFavorite = favoriteList.find(item => item.id === track.id)
+    setIsFavorite(!!isFavorite)
+  }, [favoriteList, track.id])
+
   const minutes = Math.floor(track.duration / 60)
   const seconds = track.duration % 60
   const formatedDuration = `${minutes < 10 ? 0 : ""}${minutes}:${seconds < 10 ? 0 : ""}${seconds}`
+  
+  const toggleIsMusicFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeMusicFromFavorite(track))
+    }
+    else {
+      dispatch(addMusicToFavorite(track))
+    }
+  }
+
   return (
     <TrackContainer>
       <Cover src={track.album.cover_small} alt={track.title} />
@@ -36,7 +56,7 @@ export const Track = ({ track }) => {
         <Actions>
           
           <AddToFavorites
-            onClick={() => setIsFavorite(!isFavorite)}
+            onClick={toggleIsMusicFavorite}
             isFavorite={isFavorite}
             data-tip data-for='addToFavorite'
           >
@@ -55,15 +75,7 @@ export const Track = ({ track }) => {
           <ReactTooltip id="viewOnDeezer" effect="solid">
             <span>Ver no Deezer</span>
           </ReactTooltip>
-          <Link
-            src={`/musicas/${track.id}`}
-            data-tip data-for='musicDetail'
-          >
-            <FaDeezer size={20}/>
-          </Link>
-          <ReactTooltip id="musicDetail" effect="solid">
-            <span>Ver detalhes</span>
-          </ReactTooltip>
+  
         </Actions>
       </Content>
 

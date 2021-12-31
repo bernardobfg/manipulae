@@ -62,6 +62,7 @@ export const CheckOnDeezer = styled.a`
   cursor: pointer;
   color: ${props => props.theme.colors.text};
   margin-left: 10px;
+  transition: color .2s;
   &:hover{
     color: ${props => props.theme.colors.primary};
   }
