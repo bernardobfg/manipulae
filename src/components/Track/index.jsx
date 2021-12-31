@@ -15,6 +15,7 @@ import {
   AddToFavorites,
   CheckOnDeezer
 } from "./styles"
+import { Link } from "react-router-dom"
 
 
 export const Track = ({ track }) => {
@@ -22,7 +23,6 @@ export const Track = ({ track }) => {
   const minutes = Math.floor(track.duration / 60)
   const seconds = track.duration % 60
   const formatedDuration = `${minutes < 10 ? 0 : ""}${minutes}:${seconds < 10 ? 0 : ""}${seconds}`
-  //console.log(track)
   return (
     <TrackContainer>
       <Cover src={track.album.cover_small} alt={track.title} />
@@ -55,12 +55,12 @@ export const Track = ({ track }) => {
           <ReactTooltip id="viewOnDeezer" effect="solid">
             <span>Ver no Deezer</span>
           </ReactTooltip>
-          <CheckOnDeezer
+          <Link
             src={`/musicas/${track.id}`}
             data-tip data-for='musicDetail'
           >
             <FaDeezer size={20}/>
-          </CheckOnDeezer>
+          </Link>
           <ReactTooltip id="musicDetail" effect="solid">
             <span>Ver detalhes</span>
           </ReactTooltip>
