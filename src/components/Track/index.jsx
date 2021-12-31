@@ -1,4 +1,4 @@
-import { BsHeartFill } from "react-icons/bs"
+import { BsHeartFill, BsPlusCircleFill } from "react-icons/bs"
 import { useState } from "react"
 import { FaDeezer } from "react-icons/fa"
 import ReactTooltip from 'react-tooltip'
@@ -54,6 +54,15 @@ export const Track = ({ track }) => {
           </CheckOnDeezer>
           <ReactTooltip id="viewOnDeezer" effect="solid">
             <span>Ver no Deezer</span>
+          </ReactTooltip>
+          <CheckOnDeezer
+            src={`/musicas/${track.id}`}
+            data-tip data-for='musicDetail'
+          >
+            <FaDeezer size={20}/>
+          </CheckOnDeezer>
+          <ReactTooltip id="musicDetail" effect="solid">
+            <span>Ver detalhes</span>
           </ReactTooltip>
         </Actions>
       </Content>

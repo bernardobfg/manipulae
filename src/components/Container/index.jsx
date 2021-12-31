@@ -1,10 +1,10 @@
 import { SideBar } from "../SideBar";
 import { StyledContainer } from "./styles";
 
-export const Container = ({ children }) => {
+export const Container = ({activePage, children }) => {
   return (
     <StyledContainer>
-      <SideBar/>
+      <SideBar activePage={activePage}/>
       {children}
     </StyledContainer>
   );
