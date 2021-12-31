@@ -11,7 +11,7 @@ export const SideArea = styled.div`
   border-right: 1px solid ${props => props.theme.colors.divider};
   img{
     width: 140px;
-    margin-bottom: 40px;;
+    margin-bottom: 40px;
   }
 `
 

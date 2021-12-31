@@ -25,5 +25,22 @@ export const Tracks = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  div + div{
+    margin-top: 10px;
+  }
+`
+
+export const LoadMoreButton = styled.button`
+  background-color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.text};
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  align-self: center;
+  font-weight: 600;
+  font-size: 15px;
 `

@@ -6,7 +6,7 @@ export const SideBar = () => {
   const location = useLocation()
   const itens = [
     {
-      name: "Tendências",
+      name: "Músicas",
       path: "/",
       icon: BsMusicNoteBeamed
     },

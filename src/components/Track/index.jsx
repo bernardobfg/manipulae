@@ -1,3 +1,8 @@
+import { BsHeartFill } from "react-icons/bs"
+import { useState } from "react"
+import { FaDeezer } from "react-icons/fa"
+import ReactTooltip from 'react-tooltip'
+
 import {
   TrackContainer,
   Cover,
@@ -10,9 +15,7 @@ import {
   AddToFavorites,
   CheckOnDeezer
 } from "./styles"
-import { BsHeartFill } from "react-icons/bs"
-import {FaDeezer} from "react-icons/fa"
-import { useState } from "react"
+
 
 export const Track = ({ track }) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -35,12 +38,23 @@ export const Track = ({ track }) => {
           <AddToFavorites
             onClick={() => setIsFavorite(!isFavorite)}
             isFavorite={isFavorite}
+            data-tip data-for='addToFavorite'
           >
             <BsHeartFill />
           </AddToFavorites>
-          <CheckOnDeezer href={track.link} target="_blank">
+          <ReactTooltip id="addToFavorite" effect="solid">
+            <span>Adicionar aos favoritos</span>
+          </ReactTooltip>
+          <CheckOnDeezer
+            href={track.link}
+            target="_blank"
+            data-tip data-for='viewOnDeezer'
+          >
             <FaDeezer size={20}/>
           </CheckOnDeezer>
+          <ReactTooltip id="viewOnDeezer" effect="solid">
+            <span>Ver no Deezer</span>
+          </ReactTooltip>
         </Actions>
       </Content>
 
