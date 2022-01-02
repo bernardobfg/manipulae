@@ -7,7 +7,8 @@ export const MyRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/favoritas" element={<Favorites/>} />
+        <Route exact path="/favoritas" element={<Favorites />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )
