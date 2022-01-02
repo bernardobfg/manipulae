@@ -4,14 +4,13 @@ import { Container } from "../../components/Container"
 import { SearchBar } from "../../components/SearchBar"
 import { Track } from "../../components/Track"
 import { api } from "../../services/api"
-import { Content, Section, SectionTitle, Tracks, LoadMoreButton } from "./styles"
-import ErrorSvg from "../../assets/error.svg"
+import { Content, Section, SectionTitle, Tracks, LoadMoreButton, Loader, NoResults } from "./styles"
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { ErrorImg } from "../../components/ErrorImg";
 export const Home = () => {
   const [chartTracks, setChartTracks] = useState([])
   const [searchResult, setSearchResult] = useState([])
   const [nextPage, setNextPage] = useState(null)
-  const [isFetchingNextPage, setIsFetchingNextPage] = useState(false)
   const [fetchingError, setFetchingError] = useState(false)
   const [search, setSearch] = useState("")
   const onSearch = async (setLoadingFunction) => {
@@ -52,7 +51,6 @@ export const Home = () => {
 
   const fetchNextPage = async () => {
     if (!nextPage) return
-    setIsFetchingNextPage(true)
     try {
       const response = await api.get(nextPage)
       setSearchResult([...searchResult, ...response.data.data])
@@ -64,9 +62,6 @@ export const Home = () => {
       console.log(error)
       setFetchingError(true)
     }
-
-    setIsFetchingNextPage(false)
-
   }
 
   return (
@@ -78,32 +73,41 @@ export const Home = () => {
           onSearch={onSearch}
         />
         <Section>
-          <SectionTitle>
-            {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
-          </SectionTitle>
+          {
+            !fetchingError &&
+            <SectionTitle>
+              {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
+            </SectionTitle>
+          }
           {
             fetchingError ?
-              <ErrorImg /> :
+              <NoResults>
+                <h2>Erro ao carregar as músicas</h2>
+                <ErrorImg />
+              </NoResults> :
               <>
                 <Tracks>
                   {
                     searchResult.length > 0 ?
-                      searchResult.map(track => (
-                        <Track key={track.id} track={track} />
-                      )) :
+                      <InfiniteScroll
+                        dataLength={searchResult.length}
+                        next={fetchNextPage}
+                        loader={
+                          <Loader>
+                            <ReactLoading type="spin" color="#dd33dd" height={24} width={24} />
+                          </Loader>
+                        }
+                        hasMore={!!nextPage}
+                      >
+                        {searchResult.map(track => (
+                          <Track key={track.id} track={track} />
+                        ))}
+                      </InfiniteScroll> :
                       chartTracks.map(track => (
                         <Track key={track.id} track={track} />
                       ))
                   }
                 </Tracks>
-                {searchResult.length > 0 && (
-                  <LoadMoreButton onClick={fetchNextPage}>
-                    {isFetchingNextPage ?
-                      <ReactLoading type="spin" color="#fff" height={20} width={20} /> :
-                      "Carregar mais"
-                    }
-                  </LoadMoreButton>
-                )}
               </>
           }
 

@@ -44,3 +44,22 @@ export const LoadMoreButton = styled.button`
   font-weight: 600;
   font-size: 15px;
 `
+
+export const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+
+export const NoResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2{
+    font-size: 24px;
+    color: ${props => props.theme.colors.text};
+    text-align: center;
+  }
+`
