@@ -74,18 +74,15 @@ export const Home = () => {
         />
         <Section>
           {
-            !fetchingError &&
-            <SectionTitle>
-              {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
-            </SectionTitle>
-          }
-          {
             fetchingError ?
               <NoResults>
                 <h2>Erro ao carregar as músicas</h2>
                 <ErrorImg />
               </NoResults> :
               <>
+                <SectionTitle>
+                  {searchResult.length > 0 ? "Resultados da busca" : "As principais tendências da atualidade"}
+                </SectionTitle>
                 <Tracks>
                   {
                     searchResult.length > 0 ?
