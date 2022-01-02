@@ -27,6 +27,7 @@ acese https://cors-anywhere.herokuapp.com/corsdemo e clique na opção
 ## 🔨 Funcionalidades
 - O usuário pode ver as principais tendências da atualidade
 - O usuário pode pesquisar por suas músicas e artistas preferidos
+- Os resultados da buscam estão paginados e as demais páginas podem ser obtidas com um simples scroll
 - O usuário pode adicionar as músicas á uma lista de favoritos, e caso ele saia da aplicação, ela ficará salva quando ele voltar
 - As músicas listadas apresentam um link para serem ouvidas no Deezer
 
