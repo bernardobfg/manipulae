@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "../../components/Container";
+import { MusicImg } from "../../components/MusicImg";
 import { SearchBar } from "../../components/SearchBar";
 import { Track } from "../../components/Track";
-import { Content, Section, SectionTitle, Tracks } from "./styles";
+import { Content, NoResults, Section, SectionTitle, Tracks } from "./styles";
 
 export const Favorites = () => {
   const favoriteList = useSelector(state => state.favoriteList);
@@ -18,7 +19,7 @@ export const Favorites = () => {
 
   useEffect(() => {
     setResults(favoriteList.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-  },[favoriteList])
+  }, [favoriteList])
 
   return (
     <Container activePage="Favoritas">
@@ -29,14 +30,24 @@ export const Favorites = () => {
           onSearch={searchFavorites}
         />
         <Section>
-          <SectionTitle>
-            Suas músicas favoritas
-          </SectionTitle>
-          <Tracks>
-            {results.map(item => (
-              <Track key={item.id} track={item} />
-            ))}
-          </Tracks>
+          {
+            results.length === 0 ?
+              <NoResults>
+                <h2>Nenhuma música adicionada</h2>
+                <MusicImg />
+              </NoResults> :
+
+              <>
+                <SectionTitle>
+                  Suas músicas favoritas
+                </SectionTitle>
+
+                <Tracks>
+                  {results.map(item => (
+                    <Track key={item.id} track={item} />
+                  ))}
+                </Tracks></>
+          }
         </Section>
       </Content>
 
