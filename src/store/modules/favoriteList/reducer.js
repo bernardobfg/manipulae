@@ -6,7 +6,6 @@ export const favoriteList = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case "ADD_MUSIC_TO_FAVORITE": {
-        console.log(action.payload)
         draft.push(action.payload);
         break;
       }

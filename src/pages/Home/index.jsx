@@ -24,7 +24,6 @@ export const Home = () => {
     try {
       const response = await api.get(`/search?q=${search}&limit=10`)
       setFetchingError(false)
-      console.log(response.data)
       setSearchResult(response.data.data)
       const nextPageUrl = response.data.next.split(".com/")[1]
       setNextPage(nextPageUrl)
@@ -42,7 +41,6 @@ export const Home = () => {
         const response = await api.get("/chart")
         setFetchingError(false)
         setChartTracks(response.data.tracks.data)
-        console.log(response.data)
       }
       catch (error) {
         setFetchingError(true)

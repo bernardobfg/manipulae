@@ -7,6 +7,9 @@ export const TrackContainer = styled.div`
   height: 150px;
   border-bottom: 1px solid ${props => props.theme.colors.divider};
   padding-bottom:  10px;
+  @media(max-width: 768px){
+    height: auto;
+  }
 `
 
 export const Cover = styled.img`
