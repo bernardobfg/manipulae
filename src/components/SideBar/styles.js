@@ -32,6 +32,8 @@ export const SideAreaMenu = styled.div`
   }
   @media(max-width: 768px){
     padding: 15px 20px;
+    background-color: ${props => props.theme.colors.auxiliar};
+    position: ${props => props.isOpen ? 'fixed' : 'relative'};
     img{
       margin-bottom: 10px;
     }

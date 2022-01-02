@@ -21,7 +21,7 @@ export const SideBar = ({ activePage }) => {
 
   return (
     <SideArea>
-      <SideAreaMenu>
+      <SideAreaMenu isOpen={isOpen}>
         <HamurgerBtn onClick={() => setIsOpen(!isOpen)}>
           <Hamburger isOpen={isOpen} />
         </HamurgerBtn>
