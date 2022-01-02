@@ -23,8 +23,7 @@ export const SideAreaMenu = styled.div`
   width: 100%;
   justify-content: space-between;
   padding: 0 20px;
-  
-
+  z-index: 100;
 
   img{
     width: 140px;

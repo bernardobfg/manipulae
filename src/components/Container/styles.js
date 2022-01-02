@@ -7,3 +7,14 @@ export const StyledContainer = styled.div`
     flex-direction: column;
   }
 `
+
+export const Cover = styled.div`
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(15,15,15,0.7);
+  display: none;
+  position: fixed;
+  @media(max-width: 768px){
+    display: ${props => props.isMenuOpen ? "block" : "none"};
+  }
+`

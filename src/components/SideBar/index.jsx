@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 import Logo from "../../assets/logo.svg"
 import Hamburger from "hamburger-react"
 import { useState } from "react"
-export const SideBar = ({ activePage }) => {
-  const [isOpen, setIsOpen] = useState(false)
+export const SideBar = ({ activePage, isOpen, setIsOpen }) => {
+  //const [isOpen, setIsOpen] = useState(false)
   const itens = [
     {
       name: "Músicas",
@@ -23,7 +23,7 @@ export const SideBar = ({ activePage }) => {
     <SideArea>
       <SideAreaMenu isOpen={isOpen}>
         <HamurgerBtn onClick={() => setIsOpen(!isOpen)}>
-          <Hamburger isOpen={isOpen} />
+          <Hamburger toggled={isOpen} toggle={setIsOpen} />
         </HamurgerBtn>
         <img src={Logo} alt="Logo" />
         <div></div>
