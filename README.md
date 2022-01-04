@@ -20,7 +20,7 @@ yarn dev
 ```
 Acesse no seu navegador pela url http://localhost:3000
 
-Caso tenha algum problema para fazer as requisições ao executar o projeto localmente, 
+Caso tenha algum problema para fazer as requisições ao executar o projeto localmente ou ao acessar o deploy, 
 acese https://cors-anywhere.herokuapp.com/corsdemo e clique na opção
 ```Request temporary access to the demo server```
 
